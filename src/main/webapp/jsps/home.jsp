@@ -9,7 +9,7 @@
 </head>
 </head>
 <body>
-<h1 align="center">WELCOME TO MY WORLD I AM GANESH</h1>
+<h1 align="center">WELCOME TO MY WORLD I AM T.GANESH</h1>
 <h1 align="center"> KK FUNDA</h1>
 <hr>
 <br>
