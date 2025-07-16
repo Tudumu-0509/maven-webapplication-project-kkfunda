@@ -4,7 +4,7 @@ pipeline {
     parameters {
         string(name: 'GIT_BRANCH', defaultValue: 'development', description: 'Git Branch to build')
         string(name: 'DEPLOY_PATH', defaultValue: '/maven-web-application', description: 'Tomcat context path')
-        string(name: 'TOMCAT_URL', defaultValue: 'http://13.204.65.206:8080', description: 'Tomcat server URL')
+        string(name: 'TOMCAT_URL', defaultValue: 'http://13.232.112.37:8080/', description: 'Tomcat server URL')
     }
 
     tools {
