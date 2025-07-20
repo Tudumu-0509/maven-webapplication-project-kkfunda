@@ -7,152 +7,193 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f8fcff;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f6f9fc;
       color: #333;
     }
 
-    /* Header / Hero */
-    .hero {
-      background: linear-gradient(135deg, #0277bd, #00acc1);
-      color: #fff;
+    /* Navbar */
+    .navbar {
+      background-color: #ffffff;
+      padding: 15px 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h1 {
+      color: #007b8f;
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .navbar .actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .navbar .actions a {
+      text-decoration: none;
+      color: #007b8f;
+      font-weight: 600;
+    }
+
+    /* Search Bar */
+    .search-bar {
+      background-color: #e3f2f7;
+      padding: 40px 20px;
       text-align: center;
-      padding: 60px 20px 80px;
     }
 
-    .hero h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
+    .search-bar input {
+      padding: 10px 20px;
+      width: 60%;
+      max-width: 400px;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      font-size: 16px;
     }
 
-    .hero p {
-      font-size: 1.3em;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: -40px auto 30px;
-      background: #fff;
+    /* Services */
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
       padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     }
 
-    h2 {
-      color: #01579b;
-      border-bottom: 2px solid #e0f2f1;
-      padding-bottom: 5px;
-      margin-top: 40px;
+    .card {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      width: 180px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.2s;
     }
 
-    p {
-      line-height: 1.6;
+    .card:hover {
+      transform: translateY(-5px);
     }
 
-    ul {
-      padding-left: 20px;
+    .card h3 {
+      font-size: 16px;
+      color: #007b8f;
       margin-top: 10px;
     }
 
-    ul li {
-      margin-bottom: 10px;
-      list-style: none;
-      padding-left: 25px;
-      position: relative;
-    }
-
-    ul li::before {
-      content: "✔";
-      position: absolute;
-      left: 0;
-      color: #00acc1;
-      font-weight: bold;
-    }
-
-    .contact {
-      background-color: #e0f7fa;
-      padding: 20px;
-      border-radius: 10px;
+    /* Section Title */
+    .section-title {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
       margin-top: 30px;
+      color: #004d60;
     }
 
-    .contact a {
-      color: #00796b;
-      font-weight: bold;
-      text-decoration: none;
+    /* Browse Health Conditions */
+    .health-conditions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      padding: 20px 40px 40px;
+    }
+
+    .condition-card {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
     }
 
     footer {
-      background: #004d40;
+      background: #007b8f;
       color: white;
       text-align: center;
-      padding: 20px;
-      font-size: 0.95em;
+      padding: 15px;
+      margin-top: 40px;
     }
 
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2em;
+    @media (max-width: 600px) {
+      .search-bar input {
+        width: 90%;
       }
-      .container {
-        padding: 20px;
-        margin: 0 15px;
+      .card, .condition-card {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Hero Section -->
-  <div class="hero">
+  <!-- Navbar -->
+  <div class="navbar">
     <h1>Ganesh Hospital</h1>
-    <p>Inspired by Excellence, Trusted like Family</p>
+    <div class="actions">
+      <a href="#">Login</a>
+      <a href="#">Contact</a>
+    </div>
   </div>
 
-  <!-- Main Content -->
-  <div class="container">
+  <!-- Search -->
+  <div class="search-bar">
+    <input type="text" placeholder="Search for Services, Doctors, or Conditions..." />
+  </div>
 
-    <h2>About Ganesh Hospital</h2>
-    <p>Ganesh Hospital is a state-of-the-art, multi-specialty medical facility offering comprehensive care, modern technology, and a team of experienced doctors and specialists. Our vision is to make world-class healthcare accessible and affordable to everyone.</p>
-
-    <h2>Our Specialties</h2>
-    <ul>
-      <li>Cardiology</li>
-      <li>Orthopedics</li>
-      <li>Neurology</li>
-      <li>General Surgery</li>
-      <li>Gynecology & Obstetrics</li>
-      <li>Pediatrics & Neonatology</li>
-      <li>Dermatology</li>
-      <li>Critical Care & Emergency Services</li>
-    </ul>
-
-    <h2>Why Choose Us?</h2>
-    <ul>
-      <li>24x7 Emergency & Trauma Care</li>
-      <li>International standards in hygiene & care</li>
-      <li>Experienced and empathetic doctors</li>
-      <li>Digital diagnostics & paperless systems</li>
-      <li>Affordable treatment packages</li>
-      <li>Insurance & cashless facility available</li>
-    </ul>
-
-    <div class="contact">
-      <h2>Contact Us</h2>
-      <p><strong>Address:</strong> 123, Wellness Street, MedCity, India</p>
-      <p><strong>Phone:</strong> +91-9876543210</p>
-      <p><strong>Email:</strong> <a href="mailto:info@ganeshhospital.com">info@ganeshhospital.com</a></p>
-      <p><strong>Website:</strong> <a href="https://www.ganeshhospital.com" target="_blank">www.ganeshhospital.com</a></p>
+  <!-- Service Cards -->
+  <div class="services">
+    <div class="card">
+      <img src="https://img.icons8.com/doodle/48/doctor.png" alt="Doctor" />
+      <h3>Doctor Appointment</h3>
     </div>
+    <div class="card">
+      <img src="https://img.icons8.com/fluency/48/laboratory.png" alt="Lab" />
+      <h3>Lab Tests</h3>
+    </div>
+    <div class="card">
+      <img src="https://img.icons8.com/color/48/insurance.png" alt="Insurance" />
+      <h3>Health Insurance</h3>
+    </div>
+    <div class="card">
+      <img src="https://img.icons8.com/color/48/pharmacy-shop.png" alt="Pharmacy" />
+      <h3>Pharmacy Near Me</h3>
+    </div>
+    <div class="card">
+      <img src="https://img.icons8.com/color/48/stethoscope.png" alt="Care" />
+      <h3>24x7 Emergency</h3>
+    </div>
+  </div>
+
+  <!-- Browse by Health Conditions -->
+  <div class="section-title">Browse by Health Conditions</div>
+  <div class="health-conditions">
+    <div class="condition-card">Diabetes Care</div>
+    <div class="condition-card">Cardiac Care</div>
+    <div class="condition-card">Stomach Care</div>
+    <div class="condition-card">Pain Relief</div>
+    <div class="condition-card">Oral Care</div>
+    <div class="condition-card">Respiratory</div>
+    <div class="condition-card">Sexual Health</div>
+    <div class="condition-card">Elderly Care</div>
+    <div class="condition-card">Liver Care</div>
+    <div class="condition-card">Cold & Immunity</div>
   </div>
 
   <!-- Footer -->
   <footer>
-    &copy; 2025 Ganesh Hospital. All rights reserved. Designed with care.
+    &copy; 2025 Ganesh Hospital. Designed with care for healthier lives.
   </footer>
 
 </body>
 </html>
+
 
 
 
