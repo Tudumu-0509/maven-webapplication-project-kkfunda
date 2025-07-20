@@ -1,54 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.net.*" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>KK FUNDA Home Page</title>
-<link href="images/kkfunda.jpg" rel="icon">
-</head>
 </head>
 <body>
-<h1 align="center">Welcome to GANESH DevOps</h1>
-<h1 align="center"> KK FUNDA</h1>
-<hr>
-<br>
-	<h1><h3> Server Side IP Address </h3><br>
+    <div class="container">
+        <h1>Ganesh – DevOps Faculty</h1>
+        <p><strong>Experience:</strong> 10+ Years in DevOps & Cloud Engineering</p>
 
-<% 
-String ip = "";
-InetAddress inetAddress = InetAddress.getLocalHost();
-ip = inetAddress.getHostAddress();
-out.println("Server Host Name :: "+inetAddress.getHostName()); 
-%>
-<br>
-<%out.println("Server IP Address :: "+ip);%>
-</h1>
-<br>
-<h1><h3> Client Side IP Address </h3><br>
-<%out.print( "Client IP Address :: " + request.getRemoteAddr() ); %><br>
-<%out.print( "Client Name Host :: "+ request.getRemoteHost() );%><br></h1>
-<hr>
-<div style="text-align: center;">
-	<span>
-		<img src="images/kkfunda.jpg" alt="" width="100">
-	</span>
-	<span style="font-weight: bold;">
-		KK FUNDA, 
-		Martha Halli, Banglore,
-		Bangalore,
-		+91-9676831734,+91-9676831734
-		kkeducationblr@gmail.com
-		<br>
-		<a href="mailto:kkeducation@gmail.com">Mail to KK FUNDA</a>
-	</span>
-</div>
-<hr>
-	<p> Service : <a href="services/employee/getEmployeeDetails">Get Employee Details </p>
-<hr>
-<hr>
-<p align=center>KK FUNDA Training, Development Center.</p>
-<p align=center><small>Copyrights 2024 by <a href="google.com/">KK FUNDA</a> </small></p>
+        <h2>About</h2>
+        <p>Ganesh is a highly experienced and intuitive DevOps engineer and trainer with a decade of hands-on expertise. He is passionate about teaching and guiding aspiring DevOps professionals through practical, real-world projects and tools.</p>
 
+        <h2>Tools & Technologies Expertise</h2>
+        <ul>
+            <li>Linux (Admin & Scripting)</li>
+            <li>Git & GitHub</li>
+            <li>Maven</li>
+            <li>SonarQube</li>
+            <li>Nexus Repository Manager</li>
+            <li>Apache Tomcat</li>
+            <li>Jenkins CI/CD</li>
+            <li>Docker (Containers)</li>
+            <li>Kubernetes (K8s)</li>
+            <li>Terraform (IaC)</li>
+            <li>AWS Cloud (EC2, S3, IAM, VPC, etc.)</li>
+        </ul>
+
+        <h2>Why Learn from Ganesh?</h2>
+        <ul>
+            <li>10+ years of real-time DevOps experience</li>
+            <li>Project-based, hands-on teaching methodology</li>
+            <li>Focus on tools integration and real-world deployment pipelines</li>
+            <li>Strong mentorship and placement guidance</li>
+        </ul>
+
+        <h2>Contact</h2>
+        <p>Email: ganesh.devops@example.com<br>
+        LinkedIn: <a href="https://www.linkedin.com/in/ganesh-devops" target="_blank">linkedin.com/in/ganesh-devops</a></p>
+    </div>
 </body>
 </html>
