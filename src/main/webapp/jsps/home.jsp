@@ -155,6 +155,15 @@
     <h2>Innovative Software Solutions</h2>
     <p>We build scalable, secure, and smart applications for the digital world.</p>
   </div>
+<!-- Add this below the services section and before contact -->
+<div class="section-title">Our Clients</div>
+<div class="services">
+  <div class="card">
+    <img src="https://img.icons8.com/ios-filled/50/company.png" alt="Client Logo" />
+    <h3>Manesha Enterprises</h3>
+    <p style="font-size: 14px; color: #555;">Trusted technology partner since 2022.</p>
+  </div>
+</div>
 
   <!-- Services -->
   <div class="section-title">Our Expertise</div>
