@@ -154,16 +154,37 @@
   <div class="banner">
     <h2>Innovative Software Solutions</h2>
     <p>We build scalable, secure, and smart applications for the digital world.</p>
-  </div>
-<!-- Add this below the services section and before contact -->
+  <!-- Client Section -->
 <div class="section-title">Our Clients</div>
-<div class="services">
-  <div class="card">
+<div class="services client-section">
+  <div class="card client-card">
     <img src="https://img.icons8.com/ios-filled/50/company.png" alt="Client Logo" />
-    <h3>Manesha Enterprises</h3>
-    <p style="font-size: 14px; color: #555;">Trusted technology partner since 2022.</p>
+    <h3 class="client-name">Manesha Enterprises</h3>
+    <p class="client-desc">Manesha technology partner since 2022.</p>
   </div>
 </div>
+
+<style>
+  /* Client Section specific styles */
+  .client-section {
+    justify-content: flex-start; /* align left */
+  }
+  .client-card {
+    border: 2px solid #4CAF50;  /* green border */
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); /* subtle green shadow */
+    background: #e8f5e9; /* light green background */
+    color: #2e7d32; /* dark green text */
+  }
+  .client-name {
+    color: #1b5e20; /* darker green */
+    font-weight: 700;
+  }
+  .client-desc {
+    color: #4caf50;
+    font-style: italic;
+  }
+</style>
+
 
   <!-- Services -->
   <div class="section-title">Our Expertise</div>
