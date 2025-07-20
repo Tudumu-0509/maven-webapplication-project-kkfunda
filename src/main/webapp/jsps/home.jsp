@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ganesh Hospital</title>
+  <title>Ganesh Software Company</title>
   <style>
     body {
       margin: 0;
@@ -28,48 +28,53 @@
       margin: 0;
     }
 
-    .navbar .actions {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .navbar .actions a {
+    .navbar .menu a {
+      margin-left: 20px;
       text-decoration: none;
       color: #007b8f;
       font-weight: 600;
     }
 
-    /* Search Bar */
-    .search-bar {
-      background-color: #e3f2f7;
-      padding: 40px 20px;
+    /* Banner */
+    .banner {
+      background-color: #e0f7fa;
       text-align: center;
+      padding: 60px 20px;
     }
 
-    .search-bar input {
-      padding: 10px 20px;
-      width: 60%;
-      max-width: 400px;
-      border: 1px solid #ccc;
-      border-radius: 30px;
-      font-size: 16px;
+    .banner h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #004d60;
     }
 
-    /* Services */
+    .banner p {
+      font-size: 18px;
+      color: #333;
+    }
+
+    /* Services Section */
+    .section-title {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      margin: 40px 0 20px;
+      color: #004d60;
+    }
+
     .services {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
-      padding: 30px;
+      padding: 0 30px 30px;
     }
 
     .card {
       background-color: #ffffff;
       padding: 20px;
-      border-radius: 15px;
-      width: 180px;
+      border-radius: 12px;
+      width: 220px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       text-align: center;
       transition: transform 0.2s;
@@ -79,54 +84,55 @@
       transform: translateY(-5px);
     }
 
+    .card img {
+      width: 48px;
+      height: 48px;
+    }
+
     .card h3 {
       font-size: 16px;
       color: #007b8f;
       margin-top: 10px;
     }
 
-    /* Section Title */
-    .section-title {
+    /* Contact */
+    .contact {
+      background-color: #c8e6e8;
       text-align: center;
-      font-size: 22px;
-      font-weight: 600;
+      padding: 40px 20px;
       margin-top: 30px;
+    }
+
+    .contact p {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+
+    .contact a {
       color: #004d60;
-    }
-
-    /* Browse Health Conditions */
-    .health-conditions {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 20px;
-      padding: 20px 40px 40px;
-    }
-
-    .condition-card {
-      background-color: #fff;
-      padding: 15px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      font-size: 14px;
-      font-weight: 500;
-      color: #333;
+      font-weight: 600;
+      text-decoration: none;
     }
 
     footer {
       background: #007b8f;
       color: white;
       text-align: center;
-      padding: 15px;
-      margin-top: 40px;
+      padding: 20px;
+      font-size: 0.95em;
     }
 
-    @media (max-width: 600px) {
-      .search-bar input {
-        width: 90%;
+    @media (max-width: 768px) {
+      .services {
+        flex-direction: column;
+        align-items: center;
       }
-      .card, .condition-card {
-        width: 100%;
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .navbar .menu {
+        margin-top: 10px;
       }
     }
   </style>
@@ -135,64 +141,66 @@
 
   <!-- Navbar -->
   <div class="navbar">
-    <h1>Ganesh Hospital</h1>
-    <div class="actions">
-      <a href="#">Login</a>
+    <h1>Ganesh Software</h1>
+    <div class="menu">
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">Projects</a>
       <a href="#">Contact</a>
     </div>
   </div>
 
-  <!-- Search -->
-  <div class="search-bar">
-    <input type="text" placeholder="Search for Services, Doctors, or Conditions..." />
+  <!-- Banner -->
+  <div class="banner">
+    <h2>Innovative Software Solutions</h2>
+    <p>We build scalable, secure, and smart applications for the digital world.</p>
   </div>
 
-  <!-- Service Cards -->
+  <!-- Services -->
+  <div class="section-title">Our Expertise</div>
   <div class="services">
     <div class="card">
-      <img src="https://img.icons8.com/doodle/48/doctor.png" alt="Doctor" />
-      <h3>Doctor Appointment</h3>
+      <img src="https://img.icons8.com/color/48/cloud.png" alt="Cloud" />
+      <h3>AWS Cloud Solutions</h3>
     </div>
     <div class="card">
-      <img src="https://img.icons8.com/fluency/48/laboratory.png" alt="Lab" />
-      <h3>Lab Tests</h3>
+      <img src="https://img.icons8.com/color/48/docker.png" alt="Docker" />
+      <h3>DevOps & Docker</h3>
     </div>
     <div class="card">
-      <img src="https://img.icons8.com/color/48/insurance.png" alt="Insurance" />
-      <h3>Health Insurance</h3>
+      <img src="https://img.icons8.com/color/48/kubernetes.png" alt="K8s" />
+      <h3>Kubernetes</h3>
     </div>
     <div class="card">
-      <img src="https://img.icons8.com/color/48/pharmacy-shop.png" alt="Pharmacy" />
-      <h3>Pharmacy Near Me</h3>
+      <img src="https://img.icons8.com/fluency/48/java-coffee-cup-logo.png" alt="Java" />
+      <h3>Java & Spring Boot</h3>
     </div>
     <div class="card">
-      <img src="https://img.icons8.com/color/48/stethoscope.png" alt="Care" />
-      <h3>24x7 Emergency</h3>
+      <img src="https://img.icons8.com/color/48/terraform.png" alt="Terraform" />
+      <h3>Terraform IAC</h3>
+    </div>
+    <div class="card">
+      <img src="https://img.icons8.com/ios-filled/50/github.png" alt="GitHub" />
+      <h3>CI/CD Pipelines</h3>
     </div>
   </div>
 
-  <!-- Browse by Health Conditions -->
-  <div class="section-title">Browse by Health Conditions</div>
-  <div class="health-conditions">
-    <div class="condition-card">Diabetes Care</div>
-    <div class="condition-card">Cardiac Care</div>
-    <div class="condition-card">Stomach Care</div>
-    <div class="condition-card">Pain Relief</div>
-    <div class="condition-card">Oral Care</div>
-    <div class="condition-card">Respiratory</div>
-    <div class="condition-card">Sexual Health</div>
-    <div class="condition-card">Elderly Care</div>
-    <div class="condition-card">Liver Care</div>
-    <div class="condition-card">Cold & Immunity</div>
+  <!-- Contact -->
+  <div class="contact">
+    <h2>Contact Us</h2>
+    <p><strong>Email:</strong> <a href="mailto:info@ganeshsoftware.com">info@ganeshsoftware.com</a></p>
+    <p><strong>Phone:</strong> +91-9876543210</p>
+    <p><strong>Location:</strong> Hyderabad, India</p>
   </div>
 
   <!-- Footer -->
   <footer>
-    &copy; 2025 Ganesh Hospital. Designed with care for healthier lives.
+    &copy; 2025 Ganesh Software Company. All rights reserved.
   </footer>
 
 </body>
 </html>
+
 
 
 
