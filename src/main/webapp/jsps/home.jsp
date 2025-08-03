@@ -152,7 +152,7 @@
 
   <!-- Banner -->
   <div class="banner">
-    <h2>Ganesh Software Solutions</h2>
+    <h2>Ganesh Softwares</h2>
     <p>We build scalable, secure, and smart applications for the digital world.</p>
   <!-- Client Section -->
 <div class="section-title">Our Clients</div>
