@@ -219,7 +219,7 @@
   <div class="contact">
     <h2>Contact Us</h2>
     <p><strong>Email:</strong> <a href="mailto:info@ganeshsoftware.com">info@ganeshsoftware.com</a></p>
-    <p><strong>Phone:</strong> +91-9876543210</p>
+    <p><strong>Phone:</strong> +91-9182374305</p>
     <p><strong>Location:</strong> Hyderabad, India</p>
   </div>
 
