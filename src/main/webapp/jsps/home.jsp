@@ -159,7 +159,7 @@
 <div class="services client-section">
   <div class="card client-card">
     <img src="https://img.icons8.com/ios-filled/50/company.png" alt="Client Logo" />
-    <h3 class="client-name">Manesha galam khammam wipro 3+ Software</h3>
+    <h3 class="client-name">Manesha galam khammam wipro 3+ she practicing today class Software</h3>
     <p class="client-desc">Manesha technology partner since 2022.</p>
   </div>
 </div>
