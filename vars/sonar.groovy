@@ -1,6 +1,7 @@
-// vars/sonar.groovy
+// vars/sonarBuild.groovy
 def call() {
-	stage('soanr')
-    // Run the SonarQube scan
-    sh "mvn sonar:sonar"
+    echo "Running SonarQube Analysis..."
+    withCredentials([string(credentialsId: 'SONAR_TOKEN_ID', variable: 'SONAR_TOKEN')]) {
+        sh "mvn sonar:sonar -Dsonar.login=${SONAR_TOKEN}"
+    }
 }
