@@ -1,10 +1,10 @@
 // vars/sonar.groovy
 def call() {
-stage('sonar report'){
-	steps{
-	sh "mvn sonar:sonar"
-	}
+	stage('soanr')
+    // Run the SonarQube scan
+    sh "mvn sonar:sonar"
 }
+
 
 
 
