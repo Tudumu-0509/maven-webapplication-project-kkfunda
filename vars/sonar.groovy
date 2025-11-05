@@ -4,6 +4,6 @@ stage('sonar report'){
 	sh "mvn sonar:sonar"
 	}
 }
-}
+
 
 
