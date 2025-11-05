@@ -1,3 +1,4 @@
+def call() {
 stage('Deploy to Tomcat') {
             steps {
                 sh """
@@ -7,3 +8,4 @@ stage('Deploy to Tomcat') {
                 """
             }
         }
+}
