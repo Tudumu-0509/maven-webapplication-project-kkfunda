@@ -2,14 +2,15 @@ def call() {
     stage('Build') {
         echo "Building the application..."
 
-        // Clone using credentials
+        // ✅ Correct GitHub URL + credentials
         git branch: 'development',
             credentialsId: 'github-token',
-            url: 'https://github.com/kkfunda/maven-webapplication-project-kkfunda.git'
+            url: 'https://github.com/Tudumu-0509/maven-webapplication-project-kkfunda.git'
 
-        // Build the Maven project
+        // Maven build
         sh 'mvn clean package'
     }
 }
+
 
 
