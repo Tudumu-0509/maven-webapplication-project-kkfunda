@@ -6,7 +6,7 @@ def call() {
             sh '''
                 mvn sonar:sonar \
                 -Dsonar.projectKey=maven-web-application-kkfunda \
-                -Dsonar.host.url=http://3.236.159.117/:9000 \
+                -Dsonar.host.url=http://3.236.159.117:9000 \
                 -Dsonar.login=$SONAR_TOKEN
             '''
         }
