@@ -21,18 +21,14 @@
 		<spring.version>5.3.34</spring.version>
 		<junit.version>4.11</junit.version>
 		<log4j.version>1.2.17</log4j.version>
-		<sonar.host.url>http://44.203.82.231:9000/</sonar.host.url>
+		<sonar.host.url>http://44.203.82.231:9000</sonar.host.url>
 		<sonar.login>admin</sonar.login>
-		<sonar.password>Password</sonar.password> 
+		<!-- Avoid storing sonar.password here for security reasons -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-	
-
-
 	</properties>
 
 	<dependencies>
-		
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
@@ -47,6 +43,7 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Keep only one javax.servlet-api dependency -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -62,7 +59,6 @@
 		</dependency>
 
 		<!-- compile dependencies -->
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -83,20 +79,9 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
-		<!-- provided dependencies -->
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-			<scope>provided</scope>
-		</dependency>
-		
 	</dependencies>
 	
 	<distributionManagement>
-	
 	    <repository>
 	      <id>nexus</id>
 	      <name>KK FUNDA Releases Nexus Repository</name>
@@ -108,7 +93,6 @@
 	      <name>KK FUNDA Snapshot Nexus Repository </name>
 	      <url>http://3.239.67.157:8081/repository/manesha-project-repo/</url>
 	    </snapshotRepository>
-	    
 	</distributionManagement>
 	
 	<build>
@@ -118,7 +102,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
+				<version>3.8.1</version>
 				<configuration>
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
@@ -148,9 +132,12 @@
 					<wtpContextName>maven-web-application</wtpContextName>
 				</configuration>
 			</plugin>
-			
-</plugins>
+
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>4.0.0.4121</version>
+			</plugin>
+		</plugins>
 	</build>
-	
-	
 </project>
