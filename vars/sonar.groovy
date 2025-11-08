@@ -1,5 +1,5 @@
 def call() {
-   stage('sonar){
+   stage('sonar'){
     echo "Running SonarQube analysis..."
     sh 'mvn sonar:sonar'
 }
