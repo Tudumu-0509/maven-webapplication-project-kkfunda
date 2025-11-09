@@ -20,7 +20,7 @@ def call(String buildStatus = 'SUCCESS') {
 
     // Send Slack Notification
     slackSend(
-        channel: '#devops-alerts',   // 🔹 నీ Slack channel name ఇక్కడ ఇవ్వాలి
+        channel: 'jio-project',   
         color: color,
         message: message
     )
