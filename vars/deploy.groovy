@@ -4,7 +4,7 @@ def call() {
         sh """
             curl -u manesha:password \\
             --upload-file target/maven-web-application.war \\
-            "http://3.238.184.68:8080/manager/text/deploy?path=/maven-web-application&update=true"
+            "http://3.238.142.178:8080/manager/text/deploy?path=/maven-web-application&update=true"
         """
     }
 }
