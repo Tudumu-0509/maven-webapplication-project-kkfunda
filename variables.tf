@@ -25,3 +25,10 @@ variable "instance_name" {
   type        = string
   default     = "Terraform-EC2"
 }
+
+# Key pair name
+variable "key_name" {
+  description = "Existing AWS Key Pair Name"
+  type        = string
+  default     = "North"
+}
