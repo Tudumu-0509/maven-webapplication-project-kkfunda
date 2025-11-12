@@ -43,6 +43,19 @@ pipeline {
             }
         }
 
+        stage('Wait for SSH Availability') {
+            steps {
+                script {
+                    echo "⏳ Waiting for SSH on ${HOST}..."
+                    retry(10) {
+                        sh "nc -zv ${HOST} 22"
+                        sleep 5
+                    }
+                    echo "✅ SSH is ready!"
+                }
+            }
+        }
+
         stage('Deploy Container on Ubuntu with Docker') {
             steps {
                 withCredentials([
@@ -52,14 +65,15 @@ pipeline {
                     sh """
                         ssh -o StrictHostKeyChecking=no -i \$SSH_KEY \$USER@\$HOST 'bash -s' <<'ENDSSH'
                             set -e
+                            set -o pipefail
 
                             echo "🔧 Updating packages..."
                             sudo apt-get update -y
+                            sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release
 
                             echo "🔧 Installing Docker..."
-                            sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
                             curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-                            echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+                            echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
                             sudo apt-get update -y
                             sudo apt-get install -y docker-ce docker-ce-cli containerd.io
                             sudo systemctl enable --now docker
