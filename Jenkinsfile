@@ -43,41 +43,39 @@ pipeline {
             }
         }
 
-        stage('Deploy Container on RHEL with Docker') {
-            steps {
-                withCredentials([
-                    sshUserPrivateKey(credentialsId: 'ec2-ssh-key', keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER'),
-                    usernamePassword(credentialsId: 'docker-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')
-                ]) {
-                    sh """
-                        ssh -o StrictHostKeyChecking=no -i \$SSH_KEY \$USER@\$HOST 'bash -s' <<'ENDSSH'
-                            set -e
-                            echo "🔧 Installing Docker..."
-                            sudo yum install -y yum-utils
-                            sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-                            sudo yum install -y docker-ce docker-ce-cli containerd.io
-                            sudo systemctl enable --now docker
+       stage('Deploy Container on Amazon Linux 2 with Docker') {
+    steps {
+        withCredentials([
+            sshUserPrivateKey(credentialsId: 'ec2-ssh-key', keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER'),
+            usernamePassword(credentialsId: 'docker-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')
+        ]) {
+            sh """
+                ssh -o StrictHostKeyChecking=no -i \$SSH_KEY \$USER@\$HOST 'bash -s' <<'ENDSSH'
+                    set -e
+                    echo "🔧 Installing Docker..."
+                    sudo amazon-linux-extras enable docker
+                    sudo yum install -y docker
+                    sudo systemctl enable --now docker
+                    sudo usermod -aG docker $USER
 
-                            echo "🔐 Logging in to Docker Hub..."
-                            echo "${DOCKER_PASS}" | sudo docker login -u "${DOCKER_USER}" --password-stdin
+                    echo "🔐 Logging in to Docker Hub..."
+                    echo \$DOCKER_PASS | sudo docker login -u \$DOCKER_USER --password-stdin
 
-                            echo "🧹 Cleaning old container..."
-                            sudo docker stop ${CONTAINER_NAME} || true
-                            sudo docker rm ${CONTAINER_NAME} || true
+                    echo "🧹 Cleaning old container..."
+                    sudo docker ps -a -q --filter "name=${CONTAINER_NAME}" | grep . && sudo docker rm -f ${CONTAINER_NAME} || true
 
-                            echo "⬇️ Pulling latest image..."
-                            sudo docker pull ${IMAGE_NAME}
+                    echo "⬇️ Pulling latest image..."
+                    sudo docker pull ${IMAGE_NAME}
 
-                            echo "🚀 Running new container..."
-                            sudo docker run -d -p ${PORT}:8080 --name ${CONTAINER_NAME} ${IMAGE_NAME}
+                    echo "🚀 Running new container..."
+                    sudo docker run -d -p ${PORT}:8080 --name ${CONTAINER_NAME} ${IMAGE_NAME}
 
-                            echo "✅ Deployment complete!"
+                    echo "✅ Deployment complete!"
 ENDSSH
-                    """
-                }
-            }
+            """
         }
     }
+}
 
     post {
         success {
