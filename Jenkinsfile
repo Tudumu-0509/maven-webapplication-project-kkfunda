@@ -20,7 +20,7 @@ pipeline {
         stage('Terraform Init & Apply') {
             steps {
                 dir("${TERRAFORM_DIR}") {
-                    withCredentials([[ 
+                    withCredentials([[
                         $class: 'AmazonWebServicesCredentialsBinding',
                         credentialsId: 'aws-cred'
                     ]]) {
@@ -43,52 +43,32 @@ pipeline {
             }
         }
 
-        stage('Wait for SSH Availability') {
-            steps {
-                script {
-                    echo "⏳ Waiting for SSH on ${env.HOST}..."
-                    sh """
-                    until nc -zv ${env.HOST} 22; do
-                        echo "Waiting for SSH..."
-                        sleep 5
-                    done
-                    """
-                }
-            }
-        }
-
-        stage('Deploy Container on RHEL with Docker') {
+        stage('Deploy Container on RHEL with Podman') {
             steps {
                 withCredentials([
                     sshUserPrivateKey(credentialsId: 'ec2-ssh-key', keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER'),
                     usernamePassword(credentialsId: 'docker-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')
                 ]) {
                     sh """
-                    ssh -o StrictHostKeyChecking=no -i \$SSH_KEY \$USER@\$HOST 'bash -s' <<'ENDSSH'
-                        set -e
+                        ssh -o StrictHostKeyChecking=no -i \$SSH_KEY \$USER@\$HOST 'bash -s' <<'ENDSSH'
+                            set -e
+                            echo "🔧 Installing Podman..."
+                            sudo yum install -y podman
 
-                        echo "🔧 Installing Docker on RHEL..."
-                        # Enable extras repo for Docker
-                        sudo subscription-manager repos --enable=rhel-7-server-extras-rpms || true
-                        sudo yum install -y yum-utils
-                        sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-                        sudo yum install -y docker-ce docker-ce-cli containerd.io
-                        sudo systemctl enable --now docker
+                            echo "🔐 Logging in to Docker Hub..."
+                            echo "${DOCKER_PASS}" | podman login docker.io -u "${DOCKER_USER}" --password-stdin
 
-                        echo "🔐 Logging in to Docker Hub..."
-                        echo \$DOCKER_PASS | sudo docker login -u \$DOCKER_USER --password-stdin
+                            echo "🧹 Cleaning old container..."
+                            podman stop ${CONTAINER_NAME} || true
+                            podman rm ${CONTAINER_NAME} || true
 
-                        echo "🧹 Cleaning old container..."
-                        sudo docker stop ${CONTAINER_NAME} || true
-                        sudo docker rm ${CONTAINER_NAME} || true
+                            echo "⬇️ Pulling latest image..."
+                            podman pull ${IMAGE_NAME}
 
-                        echo "⬇️ Pulling latest image..."
-                        sudo docker pull ${IMAGE_NAME}
+                            echo "🚀 Running new container..."
+                            podman run -d -p ${PORT}:8080 --name ${CONTAINER_NAME} ${IMAGE_NAME}
 
-                        echo "🚀 Running new container..."
-                        sudo docker run -d -p ${PORT}:8080 --name ${CONTAINER_NAME} ${IMAGE_NAME}
-
-                        echo "✅ Deployment complete!"
+                            echo "✅ Deployment complete!"
 ENDSSH
                     """
                 }
@@ -98,7 +78,7 @@ ENDSSH
 
     post {
         success {
-            echo "🎉 Application successfully deployed with Docker!"
+            echo "🎉 Application successfully deployed!"
             echo "🌐 Access it at: http://${HOST}:${PORT}/"
         }
         failure {
@@ -106,3 +86,5 @@ ENDSSH
         }
     }
 }
+
+
