@@ -2,38 +2,50 @@ pipeline {
     agent any
 
     environment {
-        TERRAFORM_DIR = "terraform1"
-        AWS_DEFAULT_REGION = "us-east-1"
+        AWS_ACCESS_KEY_ID     = credentials('aws-access-key')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
+        AWS_DEFAULT_REGION     = "us-east-1"
     }
 
     stages {
-        stage('Checkout Git Repo') {
+        stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/Tudumu-0509/maven-webapplication-project-kkfunda.git'
+                git 'https://github.com/Tudumu-0509/maven-webapplication-project-kkfunda.git'
             }
         }
 
-        stage('Terraform Init & Apply') {
+        stage('Terraform Init') {
             steps {
-                dir("${TERRAFORM_DIR}") {
-                    withCredentials([[ 
-                        $class: 'AmazonWebServicesCredentialsBinding',
-                        credentialsId: 'aws-cred'
-                    ]]) {
-                        sh 'terraform init'
-                        sh 'terraform apply -auto-approve'
-                    }
-                }
+                sh '''
+                    terraform init
+                '''
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                sh '''
+                    terraform plan
+                '''
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                input message: "Do you want to launch EC2 instance?"
+                sh '''
+                    terraform apply -auto-approve
+                '''
             }
         }
     }
 
     post {
         success {
-            echo "🎉 Application successfully deployed!"
+            echo '✅ EC2 Instance launched successfully!'
         }
         failure {
-            echo "❌ Deployment failed!"
+            echo '❌ Terraform failed! Check logs.'
         }
     }
 }
